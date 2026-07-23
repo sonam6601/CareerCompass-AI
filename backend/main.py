@@ -10,15 +10,21 @@ import re
 app = FastAPI()
 
 
+# ---------------- CORS ----------------
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
+    allow_origins=[
+        "http://localhost:5173",
+        "http://127.0.0.1:5173"
+    ],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 
+# ---------------- HOME ----------------
 
 @app.get("/")
 def home():
@@ -27,14 +33,11 @@ def home():
     }
 
 
-
-
 # ---------------- LOGIN ----------------
 
 class LoginData(BaseModel):
     email: str
     password: str
-
 
 
 @app.post("/login")
@@ -56,18 +59,13 @@ def login(data: LoginData):
     }
 
 
-
-
-
 # ---------------- CLEAN TEXT ----------------
-
 
 def clean_text(text):
 
-    text = re.sub(r'\s+', ' ', text)
+    text = re.sub(r"\s+", " ", text)
 
 
-    # Fix separated letters
     words = text.split()
 
     result = []
@@ -84,23 +82,20 @@ def clean_text(text):
         else:
 
             if temp:
+
                 result.append(temp)
                 temp = ""
 
             result.append(word)
 
 
-
     if temp:
-        result.append(temp)
 
+        result.append(temp)
 
 
     text = " ".join(result)
 
-
-
-    # Formatting
 
     headings = [
         "CERTIFICATION",
@@ -123,31 +118,17 @@ def clean_text(text):
         )
 
 
-
     text = text.replace(
         "PowerBI",
         "Power BI"
     )
 
 
-    text = text.replace(
-        "GitHub",
-        "GitHub"
-    )
-
-
     return text.strip()
-
-
-
-
-
-# ---------------- RESUME ANALYZER ----------------
-
+    # ---------------- RESUME ANALYZER ----------------
 
 @app.post("/upload-resume")
 async def upload_resume(file: UploadFile = File(...)):
-
 
     os.makedirs("uploads", exist_ok=True)
 
@@ -163,9 +144,7 @@ async def upload_resume(file: UploadFile = File(...)):
         )
 
 
-
     resume_text = ""
-
 
 
     with pdfplumber.open(file_path) as pdf:
@@ -175,15 +154,10 @@ async def upload_resume(file: UploadFile = File(...)):
             resume_text += page.extract_text() or ""
 
 
-
     clean_resume = clean_text(resume_text)
 
 
-
-    # Skill checking text
-
     skill_text = clean_resume.lower().replace(" ", "")
-
 
 
     skills_list = [
@@ -210,9 +184,7 @@ async def upload_resume(file: UploadFile = File(...)):
     ]
 
 
-
     found_skills = []
-
 
 
     for skill in skills_list:
@@ -223,41 +195,42 @@ async def upload_resume(file: UploadFile = File(...)):
 
 
 
-
-    # Score
-
     score = 40
 
 
     if len(found_skills) >= 3:
+
         score += 25
 
 
     if "project" in skill_text:
+
         score += 10
 
 
     if "internship" in skill_text or "experience" in skill_text:
+
         score += 10
 
 
     if "github" in skill_text:
+
         score += 5
 
 
     if "certificate" in skill_text or "certification" in skill_text:
+
         score += 5
 
 
     if "education" in skill_text:
+
         score += 5
 
 
-
     if score > 100:
+
         score = 100
-
-
 
 
 
@@ -265,23 +238,24 @@ async def upload_resume(file: UploadFile = File(...)):
 
 
     if "github" not in skill_text:
+
         suggestions.append(
             "Add your GitHub profile link."
         )
 
 
     if "project" not in skill_text:
+
         suggestions.append(
             "Add more project details."
         )
 
 
     if "internship" not in skill_text and "experience" not in skill_text:
+
         suggestions.append(
             "Mention internship or practical experience."
         )
-
-
 
 
     return {
