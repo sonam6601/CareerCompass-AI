@@ -1,100 +1,38 @@
-# 🚀 CareerCompass AI
+# CareerCompass-AI 🚀
 
-## 📌 Project Description
+An AI-powered career guidance platform that helps students analyze their skills, improve resumes, and get personalized career recommendations.
 
-CareerCompass AI is an AI-powered career guidance platform designed to help students and job seekers build better career paths.
+## 📌 About Project
 
-The platform provides resume analysis, career recommendations, skill analysis, job suggestions, interview preparation, career roadmap generation, and other AI-based career tools in one place.
+CareerCompass-AI is a full-stack web application designed to help students make better career decisions. The platform provides features like resume analysis, skill tracking, and personalized career guidance.
 
----
+## ✨ Features
 
-# ✨ Features
+* 🔐 User Login System
+* 📄 Resume Analysis
+* ⭐ Resume Score Evaluation
+* 🧠 Skill Assessment
+* 🎯 Career Goal Recommendations
+* 📊 Personalized Dashboard
 
-## 🔐 User Authentication
-- Login system
-- User session management
-- Personalized dashboard
+## 🛠️ Technologies Used
 
-## 📊 Career Dashboard
-- Resume score tracking
-- Skill tracking
-- Career goal display
-- Career progress monitoring
+### Frontend
 
-## 🤖 AI Career Tools
+* React.js
+* Vite
+* JavaScript
+* CSS
 
-### 📄 Resume Analyzer
-- Analyze resume quality
-- Improve ATS score
-- Get resume insights
+### Backend
 
-### 🎯 Career Recommendation
-- Suggest suitable career paths
-- Help users select career goals
+* Python
+* FastAPI
+* Uvicorn
 
-### 🧠 Skill Analysis
-- Identify required skills
-- Find skill improvement areas
+## 📂 Project Structure
 
-### 💼 Job Recommendation
-- Suggest suitable job roles based on career goals
-
-### 🎤 AI Interview
-- Practice interview questions
-- Improve interview preparation
-
-### 📝 Cover Letter Generator
-- Generate professional cover letters
-
-### 🗺️ AI Career Roadmap
-- Provides step-by-step career growth plans
-
-### 📚 Course Recommendation
-- Suggest learning resources based on career goals
-
-### 🤖 Resume Improvement
-- Provides resume improvement suggestions
-
-### 💬 AI Career Chat
-- Provides career-related guidance through chat
-
-### 📝 AI Career Quiz
-- Suggests suitable career paths based on interests
-
-### 📋 Job Application Tracker
-- Track job applications
-- Monitor application status
-
-### 📊 Analytics Dashboard
-- Shows career progress and performance insights
-
-### 🌙 Dark / Light Mode
-- Switch between different themes for better user experience
-
----
-
-# 🛠 Technologies Used
-
-## Frontend
-- React.js
-- Vite
-- JavaScript
-- HTML5
-- CSS
-
-## Backend
-- Python
-- FastAPI
-- Uvicorn
-
-## Storage
-- Browser Local Storage
-
----
-
-# 📂 Project Structure
-
-```text
+```
 CareerCompass-AI
 │
 ├── backend
@@ -103,92 +41,81 @@ CareerCompass-AI
 │
 ├── fronted
 │   ├── src
-│   │   ├── App.jsx
-│   │   ├── Dashboard.jsx
-│   │   ├── Components
-│   │   └── Features
+│   ├── package.json
+│   └── vite.config.js
 │
 └── README.md
 ```
 
----
+## ⚙️ Installation & Setup
 
-# ⚙️ Installation Steps
+### Backend Setup
 
-## Frontend Setup
-
-Open frontend folder:
-
-```bash
-cd fronted
-```
-
-Install dependencies:
-
-```bash
-npm install
-```
-
-Run frontend:
-
-```bash
-npm run dev
-```
-
----
-
-## Backend Setup
-
-Open backend folder:
+Open terminal and go to backend folder:
 
 ```bash
 cd backend
 ```
 
-Create virtual environment:
+Install dependencies:
 
 ```bash
-python -m venv venv
+pip install -r requirements.txt
 ```
 
-Activate virtual environment:
-
-```bash
-venv\Scripts\activate
-```
-
-Install required packages:
-
-```bash
-pip install fastapi uvicorn
-```
-
-Run backend:
+Run backend server:
 
 ```bash
 uvicorn main:app --reload
 ```
 
+Backend URL:
+
+```
+http://127.0.0.1:8000
+```
+
+### Frontend Setup
+
+Open another terminal and go to frontend folder:
+
+```bash
+cd fronted
+```
+
+Install packages:
+
+```bash
+npm install
+```
+
+Start frontend:
+
+```bash
+npm run dev
+```
+
+Frontend URL:
+
+```
+http://localhost:5173
+```
+
+## 📸 Project Screenshots
+
+Add project screenshots here.
+
+## 🔮 Future Improvements
+
+* AI-based resume suggestions
+* Job recommendation system
+* Interview preparation module
+* Skill roadmap generation
+
+## 👩‍💻 Author
+
+Created by **Sonam Singh**
+
 ---
 
-# 🎯 Future Scope
-
-- Real AI chatbot integration
-- Database integration
-- User profile management
-- Real-time job API integration
-- Resume upload and AI scoring
-- Machine learning based career prediction
-- Personalized AI career assistant
-
----
-
-# 👩‍💻 Developed For
-
-Internship Project & College Academic Submission
-
----
-
-# ⭐ Project Status
-
-Completed with multiple AI-based career guidance features.
+⭐ If you like this project, give it a star on GitHub!
