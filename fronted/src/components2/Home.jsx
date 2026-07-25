@@ -102,9 +102,15 @@ function Home() {
         }}
       >
 
-        <h1>
-          🚀 CareerCompass AI
-        </h1>
+        <h1
+  style={{
+    fontSize: "32px",
+    whiteSpace: "nowrap",
+    marginBottom: "20px",
+  }}
+>
+  🚀 CareerCompass AI
+</h1>
 
 
         <input
