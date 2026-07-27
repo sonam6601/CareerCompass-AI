@@ -1,3 +1,6 @@
+## 🌐 Live Demo
+
+https://careercompass-ai-1-qh15.onrender.com
 # 🚀 CareerCompass AI
 
 ## 📌 Project Description
