@@ -13,7 +13,6 @@ function ResumeAnalyzer() {
   const [suggestions, setSuggestions] = useState([]);
 
 
-
   const handleUpload = async () => {
 
     if (!file) {
@@ -27,11 +26,10 @@ function ResumeAnalyzer() {
     formData.append("file", file);
 
 
-
     try {
 
       const response = await fetch(
-       "https://careercompass-ai-3lln.onrender.com"
+        "https://careercompass-ai-3lln.onrender.com/upload-resume",
         {
           method: "POST",
           body: formData,
@@ -42,36 +40,34 @@ function ResumeAnalyzer() {
       const data = await response.json();
 
 
+      setMessage(data.message || "Resume analyzed successfully");
 
-      setMessage(data.message);
+      setResumeText(data.resume_text || "");
 
-      setResumeText(data.resume_text);
+      setScore(data.score || "");
 
-      setScore(data.score);
+      setSkills(data.skills || []);
 
-      setSkills(data.skills);
-
-      setSuggestions(data.suggestions);
+      setSuggestions(data.suggestions || []);
 
 
 
       localStorage.setItem(
         "resumeScore",
-        data.score
+        data.score || ""
       );
 
 
       localStorage.setItem(
         "skillsCount",
-        data.skills.length
+        (data.skills || []).length
       );
 
 
       localStorage.setItem(
         "resumeSkills",
-        JSON.stringify(data.skills)
+        JSON.stringify(data.skills || [])
       );
-
 
 
     } catch(error) {
@@ -83,7 +79,6 @@ function ResumeAnalyzer() {
     }
 
   };
-
 
 
   return (
@@ -98,14 +93,11 @@ function ResumeAnalyzer() {
       }}
     >
 
-
       <h1>📄 Resume Analyzer</h1>
-
 
       <p>
         Upload your resume and get AI-based improvement suggestions.
       </p>
-
 
 
       <div
@@ -120,7 +112,6 @@ function ResumeAnalyzer() {
       >
 
 
-
         <input
           type="file"
           accept=".pdf"
@@ -128,9 +119,7 @@ function ResumeAnalyzer() {
         />
 
 
-
         <br/><br/>
-
 
 
         <button
@@ -148,10 +137,7 @@ function ResumeAnalyzer() {
         </button>
 
 
-
         <h3>{message}</h3>
-
-
 
 
         {score && (
@@ -164,14 +150,11 @@ function ResumeAnalyzer() {
 
 
 
-
-
         {skills.length > 0 && (
 
           <div>
 
             <h3>🛠 Skills Found:</h3>
-
 
             {skills.map((skill,index)=>(
 
@@ -181,12 +164,9 @@ function ResumeAnalyzer() {
 
             ))}
 
-
           </div>
 
         )}
-
-
 
 
 
@@ -196,7 +176,6 @@ function ResumeAnalyzer() {
 
             <h3>💡 Suggestions:</h3>
 
-
             {suggestions.map((item,index)=>(
 
               <p key={index}>
@@ -205,13 +184,9 @@ function ResumeAnalyzer() {
 
             ))}
 
-
           </div>
 
         )}
-
-
-
 
 
 
@@ -236,9 +211,6 @@ function ResumeAnalyzer() {
 
 
 
-
-
-
         {resumeText && (
 
           <div
@@ -253,7 +225,6 @@ function ResumeAnalyzer() {
 
             <h3>Resume Preview:</h3>
 
-
             <p
               style={{
                 whiteSpace:"pre-wrap",
@@ -264,15 +235,12 @@ function ResumeAnalyzer() {
               {resumeText}
             </p>
 
-
           </div>
 
         )}
 
 
-
       </div>
-
 
     </div>
 
