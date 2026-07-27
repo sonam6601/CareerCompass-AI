@@ -15,10 +15,11 @@ app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
+        "https://careercompass-ai-1-qh15.onrender.com",
         "http://localhost:5173",
         "http://127.0.0.1:5173"
     ],
-    allow_credentials=False,
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -53,7 +54,6 @@ def login(data: LoginData):
             }
         }
 
-
     return {
         "message": "Invalid Credentials"
     }
@@ -65,13 +65,11 @@ def clean_text(text):
 
     text = re.sub(r"\s+", " ", text)
 
-
     words = text.split()
 
     result = []
 
     temp = ""
-
 
     for word in words:
 
@@ -82,7 +80,6 @@ def clean_text(text):
         else:
 
             if temp:
-
                 result.append(temp)
                 temp = ""
 
@@ -90,7 +87,6 @@ def clean_text(text):
 
 
     if temp:
-
         result.append(temp)
 
 
@@ -125,7 +121,9 @@ def clean_text(text):
 
 
     return text.strip()
-    # ---------------- RESUME ANALYZER ----------------
+
+
+# ---------------- RESUME ANALYZER ----------------
 
 @app.post("/upload-resume")
 async def upload_resume(file: UploadFile = File(...)):
@@ -194,65 +192,53 @@ async def upload_resume(file: UploadFile = File(...)):
             found_skills.append(skill)
 
 
-
     score = 40
 
 
     if len(found_skills) >= 3:
-
         score += 25
 
 
     if "project" in skill_text:
-
         score += 10
 
 
     if "internship" in skill_text or "experience" in skill_text:
-
         score += 10
 
 
     if "github" in skill_text:
-
         score += 5
 
 
     if "certificate" in skill_text or "certification" in skill_text:
-
         score += 5
 
 
     if "education" in skill_text:
-
         score += 5
 
 
     if score > 100:
-
         score = 100
-
 
 
     suggestions = []
 
 
     if "github" not in skill_text:
-
         suggestions.append(
             "Add your GitHub profile link."
         )
 
 
     if "project" not in skill_text:
-
         suggestions.append(
             "Add more project details."
         )
 
 
     if "internship" not in skill_text and "experience" not in skill_text:
-
         suggestions.append(
             "Mention internship or practical experience."
         )
