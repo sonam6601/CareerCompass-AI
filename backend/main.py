@@ -14,12 +14,8 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "https://careercompass-ai-1-qh15.onrender.com",
-        "http://localhost:5173",
-        "http://127.0.0.1:5173"
-    ],
-    allow_credentials=True,
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -74,7 +70,6 @@ def clean_text(text):
     for word in words:
 
         if len(word) == 1 and word.isalpha():
-
             temp += word
 
         else:
@@ -123,13 +118,13 @@ def clean_text(text):
     return text.strip()
 
 
+
 # ---------------- RESUME ANALYZER ----------------
 
 @app.post("/upload-resume")
 async def upload_resume(file: UploadFile = File(...)):
 
     os.makedirs("uploads", exist_ok=True)
-
 
     file_path = f"uploads/{file.filename}"
 
@@ -192,6 +187,7 @@ async def upload_resume(file: UploadFile = File(...)):
             found_skills.append(skill)
 
 
+
     score = 40
 
 
@@ -223,22 +219,26 @@ async def upload_resume(file: UploadFile = File(...)):
         score = 100
 
 
+
     suggestions = []
 
 
     if "github" not in skill_text:
+
         suggestions.append(
             "Add your GitHub profile link."
         )
 
 
     if "project" not in skill_text:
+
         suggestions.append(
             "Add more project details."
         )
 
 
     if "internship" not in skill_text and "experience" not in skill_text:
+
         suggestions.append(
             "Mention internship or practical experience."
         )
