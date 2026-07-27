@@ -31,7 +31,7 @@ function ResumeAnalyzer() {
     try {
 
       const response = await fetch(
-        "http://127.0.0.1:8000/upload-resume",
+        https://careercompass-ai-3lln.onrender.com
         {
           method: "POST",
           body: formData,
