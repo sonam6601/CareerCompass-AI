@@ -31,7 +31,7 @@ function ResumeAnalyzer() {
     try {
 
       const response = await fetch(
-        https://careercompass-ai-3lln.onrender.com
+       "https://careercompass-ai-3lln.onrender.com"
         {
           method: "POST",
           body: formData,
