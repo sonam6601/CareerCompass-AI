@@ -195,3 +195,16 @@ Internship Project & College Academic Submission
 # ⭐ Project Status
 
 Completed with multiple AI-based career guidance features.
+## 📸 Screenshots
+
+### Home Page
+![Home](screenshots/Screenshot%202026-07-28%20081124.png)
+
+### Dashboard
+![Dashboard](screenshots/Screenshot%202026-07-28%20081353.png)
+
+### Resume Analyzer
+![Resume Analyzer](screenshots/Screenshot%202026-07-28%20081413.png)
+
+### Career Recommendation
+![Career Recommendation](screenshots/Screenshot%202026-07-28%20081438.png)
